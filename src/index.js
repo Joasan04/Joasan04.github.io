@@ -1,9 +1,48 @@
 // Setup
 const buttons = document.getElementsByTagName("button");
+const caButton = document.getElementById("ca");
 
 for (let button of buttons) {
   button.onclick = buttonClicked;
 }
+caButton.onclick = wipe;
+
+document.onkeyup = function(event){
+  let keyDigits = [
+    "0","1","2","3","4","5","6","7","8","9"
+  ];
+  let keyOperators = [
+    "+","*","/","-"
+  ];
+  let keyDecimal = [
+    ","
+  ];
+  let keyEnter = [
+    "Enter"
+  ];
+  let backSpace = [
+    "Backspace"
+  ];
+  if (keyDigits.indexOf(event.key) != -1) {
+    output(event.key,false,false,false);
+  }
+  else if (keyOperators.indexOf(event.key) != -1) {
+    output(event.key + " ",true,false,false);
+  }
+  else if (keyDecimal.indexOf(event.key) != -1) {
+    output(".",false,false,true);
+  }
+  else if (keyEnter.indexOf(event.key) != -1) {
+    output("= ",false,true,false);
+  }
+  //FIXA!!!!
+  else if (backSpace.indexOf(event.key) != -1) {
+    if (operator != null) {
+      tall2 = tall2.slice(0, tall2.length-1);
+    }
+    tall1 = tall1.slice(0, tall1.length-1);
+  }
+};
 
 const numbermap = {
   zero: 0,
@@ -16,7 +55,6 @@ const numbermap = {
   seven: 7,
   eight: 8,
   nine: 9,
-  decimal: ".",
 };
 
 
@@ -31,9 +69,11 @@ function valueFromIndex(index) {
 // Handle buttons pressed
 function buttonClicked(event) {
   const id = event.target.id;
+  event.target.blur();
   let buttonValue = 0;
   let isOperator = false;
   let isEqual = false;
+  let isDecimal = false;
 
   buttonValue = valueFromIndex(id);
 
@@ -58,53 +98,64 @@ function buttonClicked(event) {
       buttonValue = "=";
       isEqual = true;
     }
+    else if (id == "decimal") {
+      buttonValue = ".";
+      isDecimal = true;
+    }
   }
-  
-
-  
-  output(buttonValue,isOperator,isEqual);
-
+  output(buttonValue,isOperator,isEqual,isDecimal);
 }
 
 
-  let tall1 = "";
-  let tall2 = "";
-  let svar = "";
-  let operator = "";
-  let equal = "";
+let tall1 = "";
+let tall2 = "";
+let operator = null;
+let decimal = "";
+let equal = null;
 // Send a value to the output
-function output(value, isOperator, isEqual) {
-  if (isEqual == false && isOperator == false && operator.length < 1) {
-    tall1 += value;
-  }
-  else if (isEqual == false && equal.length < 1 && isOperator == false && operator.length == 2) {
-    tall2 += value;
-  }
-  else if (isEqual == true && equal.length == 0) {
-    equal += value;
-    tall1 = parseFloat(tall1);
-    tall2 = parseFloat(tall2);
-    svar = cal(tall1,tall2,operator);
-
+function output(value, isOperator, isEqual, isDecimal) {
+  let svar = 0;
+  //check if number
+  if (isEqual == false && isOperator == false) {
+    if (operator == null) {
+      if (isDecimal && tall1.indexOf(".") != -1) {
+        return;
+      }
+      tall1 += value;
+    }
+    else {
+      if (isDecimal && tall2.indexOf(".") != -1) {
+        return;
+      }
+      tall2 += value;
+    }
   }
   else if (isOperator == true) {
     operator = value;
   }
+   else if (isEqual == true && equal == null) {
+    equal += value;
+    tall1 = parseFloat(tall1);
+    tall2 = parseFloat(tall2);
+    svar = cal(tall1,tall2,operator);
+    svar = svar.toFixed(2);
+    tall1 = svar;
+  }
+
   let curent = document.getElementById("output").innerHTML;
   if (isOperator) {
     document.getElementById("output").innerHTML = operator;
   }
   else if (isEqual) {
-    document.getElementById("output").innerHTML = svar;
+    document.getElementById("output").innerHTML = tall1;
+    tall2 = "";
+    operator = null;
+    equal = null;
+    decimal = "";
   }
   else {
     document.getElementById("output").innerHTML = curent + value;
   }
-  console.log (tall1);
-  console.log (tall2);
-  console.log (operator);
-  console.log (svar);
-
 }
 
 function cal(tall1,tall2,operator) {
@@ -120,4 +171,14 @@ function cal(tall1,tall2,operator) {
   else {
     return tall1 / tall2;
   }
+}
+
+function wipe(event) {
+  tall1 = "";
+  tall2 = "";
+  svar = null;
+  equal = null;
+  operator = null;
+  decimal = "";
+  document.getElementById("output").innerHTML = "";
 }

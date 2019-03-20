@@ -1,33 +1,54 @@
+@font-face {
+  font-family: 'alarmclock';
+  src: url('alarmclock.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+}  
+html {
+  height: 100%;
+}
 body {
-  font-family: sans-serif;
-  background-color: rgb(221, 221, 221);
+  font-family: alarmclock;
+  /*background-color: rgb(58, 255, 255);*/
+  background: linear-gradient(to left top, rgb(70, 70, 70), rgb(216, 215, 215));
+  
 }
 
 button {
-  width: 64px;
+  font-family: alarmclock;
+  font-size: 30px;
+  width: 60px;
   height: 40px;
   margin: 12px 2px;
 }
 
-#output {
-  margin: 10px 14px 20px 14px;
+#ca {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: -12px;
+  right: -69px;
+}
+
+#output-frame {
+  position: relative;
+  margin: 10px 0px 20px 3px;
   padding: 12px 12px;
   background-color: rgb(255, 255, 255);
   border: 2px solid #ddd;
   box-shadow: inset 0px 0px 5px rgba(105, 105, 105, 0.75);
   border-radius: 3px;
-  width: 230px;
+  width: 180px;
   height: 25px;
 }
 
 #calculator {
+  background: linear-gradient( #fa9451,#f86820);
   margin: auto;
   margin-right: auto;
   margin-left: auto;
   border: solid 1px #000;
-  background-color: rgb(255, 129, 45);
   width: 286px;
   height: 335px;
+  border-radius: 10px;
   padding: 10px;
   box-shadow: 5px 5px 3px rgba(143, 143, 143, 0.75);
 }
