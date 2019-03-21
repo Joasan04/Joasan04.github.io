@@ -22,14 +22,35 @@ button {
 
 #ca {
   position: absolute;
+  background-color: rgb(177, 0, 0);
+  border-top-color: rgb(172, 0, 0);
+  border-left-color: rgb(172, 0, 0);
+  border-bottom-color: rgb(167, 0, 0);
+  border-right-color: rgb(167, 0, 0);
   width: 50px;
   height: 50px;
   top: -12px;
   right: -69px;
+  color: rgb(255, 255, 255)
+}
+
+.digit {
+  background-color: rgb(255, 255, 255);
+}
+
+.operator {
+    border-style: solid;
+  background-color: rgb(100, 100, 100);
+  border-top-color: rgb(85, 85, 85);
+  border-left-color: rgb(85, 85, 85);
+  border-bottom-color: rgb(70, 70, 70);
+  border-right-color: rgb(70, 70, 70);
+  color: rgb(255, 255, 255)
 }
 
 #output-frame {
   position: relative;
+  font-size: 25px;
   margin: 10px 0px 20px 3px;
   padding: 12px 12px;
   background-color: rgb(255, 255, 255);
@@ -38,6 +59,17 @@ button {
   border-radius: 3px;
   width: 180px;
   height: 25px;
+}
+
+.center-screen {
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 100px;
+  height: 100px;
 }
 
 #calculator {

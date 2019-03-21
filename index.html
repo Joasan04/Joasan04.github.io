@@ -3,31 +3,32 @@
   <head>
     <title>Calculator template</title>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" type="text/css" href="src/styles.css" />
   </head>
 
   <body>
     <h1 style="text-align: center;">CALCULATOR</h1>
-    <div id="calculator">
+    <div id="calculator" class="center-screen">
       <div id="output-frame">
         <div id="output"></div>
         <button id="ca">Ca</button>
       </div>
       <div>
-        <button id="seven">7</button> <button id="eight">8</button>
-        <button id="nine">9</button> <button id="times">*</button>
+        <button id="seven" class="digit">7</button> <button id="eight" class="digit">8</button>
+        <button id="nine" class="digit">9</button> <button id="times" class="operator">*</button>
       </div>
       <div>
-        <button id="four">4</button> <button id="five">5</button>
-        <button id="six">6</button> <button id="divided">÷</button>
+        <button id="four" class="digit">4</button> <button id="five" class="digit">5</button>
+        <button id="six" class="digit">6</button> <button id="divided" class="operator">÷</button>
       </div>
       <div>
-        <button id="one">1</button> <button id="two">2</button>
-        <button id="three">3</button> <button id="subtract">-</button>
+        <button id="one" class="digit">1</button> <button id="two" class="digit">2</button>
+        <button id="three" class="digit">3</button> <button id="subtract" class="operator">-</button>
       </div>
       <div>
-        <button id="zero">0</button> <button id="decimal">.</button>
-        <button id="sum">=</button> <button id="add">+</button>
+        <button id="zero" class="digit">0</button> <button id="decimal" class="operator">.</button>
+        <button id="sum" class="operator">=</button> <button id="add" class="operator">+</button>
       </div>
     </div>
     <script src="src/index.js"></script>

@@ -20,7 +20,7 @@ document.onkeyup = function(event){
   let keyEnter = [
     "Enter"
   ];
-  let backSpace = [
+  let keyBackSpace = [
     "Backspace"
   ];
   if (keyDigits.indexOf(event.key) != -1) {
@@ -35,14 +35,23 @@ document.onkeyup = function(event){
   else if (keyEnter.indexOf(event.key) != -1) {
     output("= ",false,true,false);
   }
-  //FIXA!!!!
-  else if (backSpace.indexOf(event.key) != -1) {
-    if (operator != null) {
-      tall2 = tall2.slice(0, tall2.length-1);
-    }
-    tall1 = tall1.slice(0, tall1.length-1);
+  else if (keyBackSpace.indexOf(event.key) != -1) {
+    output("Backspace",false,false,false);
+    console.log(typeof event.key);
   }
-};
+} 
+/*FIXA!!!!
+function backSpace(tall1,tall2,operator) {
+  if (keyBackSpace.indexOf(event.key) != -1) {
+    if (operator != null) {
+        tall2 = tall2.slice(0, tall2.length-1);
+        output(tall2,false,false,false);
+      }
+    tall1 = tall1.slice(0, tall1.length-1);
+    output(tall1,false,false,false);
+  }
+}*/
+
 
 const numbermap = {
   zero: 0,
@@ -115,8 +124,13 @@ let equal = null;
 // Send a value to the output
 function output(value, isOperator, isEqual, isDecimal) {
   let svar = 0;
+  let curent = document.getElementById("output").innerHTML;
   //check if number
-  if (isEqual == false && isOperator == false) {
+  if (value == "Backspace") {
+    curent = curent.slice(0, curent.length-1);
+    value = "";
+  }
+  else if (isEqual == false && isOperator == false) {
     if (operator == null) {
       if (isDecimal && tall1.indexOf(".") != -1) {
         return;
@@ -142,7 +156,7 @@ function output(value, isOperator, isEqual, isDecimal) {
     tall1 = svar;
   }
 
-  let curent = document.getElementById("output").innerHTML;
+
   if (isOperator) {
     document.getElementById("output").innerHTML = operator;
   }
@@ -174,6 +188,8 @@ function cal(tall1,tall2,operator) {
 }
 
 function wipe(event) {
+  const id = event.target.id;
+  event.target.blur();
   tall1 = "";
   tall2 = "";
   svar = null;
