@@ -35,23 +35,10 @@ document.onkeyup = function(event){
   else if (keyEnter.indexOf(event.key) != -1) {
     output("= ",false,true,false);
   }
-  else if (keyBackSpace.indexOf(event.key) != -1) {
+  /*else if (keyBackSpace.indexOf(event.key) != -1) {
     output("Backspace",false,false,false);
-    console.log(typeof event.key);
-  }
+  }*/
 } 
-/*FIXA!!!!
-function backSpace(tall1,tall2,operator) {
-  if (keyBackSpace.indexOf(event.key) != -1) {
-    if (operator != null) {
-        tall2 = tall2.slice(0, tall2.length-1);
-        output(tall2,false,false,false);
-      }
-    tall1 = tall1.slice(0, tall1.length-1);
-    output(tall1,false,false,false);
-  }
-}*/
-
 
 const numbermap = {
   zero: 0,
@@ -126,11 +113,18 @@ function output(value, isOperator, isEqual, isDecimal) {
   let svar = 0;
   let curent = document.getElementById("output").innerHTML;
   //check if number
-  if (value == "Backspace") {
+  /*if (value == "Backspace") {
     curent = curent.slice(0, curent.length-1);
     value = "";
-  }
-  else if (isEqual == false && isOperator == false) {
+    if (operator == null) {
+      tall1 = curent;
+      console.log(tall1);
+      return;
+    }
+    tall2 = curent;
+    console.log(tall2);
+  }*/
+  if (isEqual == false && isOperator == false) {
     if (operator == null) {
       if (isDecimal && tall1.indexOf(".") != -1) {
         return;
@@ -155,7 +149,6 @@ function output(value, isOperator, isEqual, isDecimal) {
     svar = svar.toFixed(2);
     tall1 = svar;
   }
-
 
   if (isOperator) {
     document.getElementById("output").innerHTML = operator;
