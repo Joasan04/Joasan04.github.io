@@ -19,15 +19,26 @@ button {
   height: 40px;
   margin: 12px 2px;
   border-radius: 5px;
+  cursor: pointer;
+}
+
+.digit:hover {
+  background-color: rgb(225, 225, 225);
+}
+#ca:hover {
+  background-color: rgb(150, 0, 0)
+}
+.operator:hover {
+  background-color: rgb(85, 85, 85)
 }
 
 #ca {
   position: absolute;
-  background-color: rgb(177, 0, 0);
-  border-top-color: rgb(172, 0, 0);
-  border-left-color: rgb(172, 0, 0);
-  border-bottom-color: rgb(167, 0, 0);
-  border-right-color: rgb(167, 0, 0);
+  background-color: rgb(175, 0, 0);
+  border-top-color: rgb(170, 0, 0);
+  border-left-color: rgb(170, 0, 0);
+  border-bottom-color: rgb(165, 0, 0);
+  border-right-color: rgb(165, 0, 0);
   width: 50px;
   height: 50px;
   top: -12px;
