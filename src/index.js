@@ -20,8 +20,8 @@ document.onkeyup = function(event){
   let keyEnter = [
     "Enter"
   ];
-  let keyBackSpace = [
-    "Backspace"
+  let easterEgg = [
+    "j"
   ];
   if (keyDigits.indexOf(event.key) != -1) {
     output(event.key,false,false,false);
@@ -35,9 +35,9 @@ document.onkeyup = function(event){
   else if (keyEnter.indexOf(event.key) != -1) {
     output("= ",false,true,false);
   }
-  /*else if (keyBackSpace.indexOf(event.key) != -1) {
-    output("Backspace",false,false,false);
-  }*/
+  else if (easterEgg.indexOf(event.key) != -1) {
+    output("j",false,false,false);
+  }
 } 
 
 const numbermap = {
@@ -113,17 +113,7 @@ function output(value, isOperator, isEqual, isDecimal) {
   let svar = 0;
   let curent = document.getElementById("output").innerHTML;
   //check if number
-  /*if (value == "Backspace") {
-    curent = curent.slice(0, curent.length-1);
-    value = "";
-    if (operator == null) {
-      tall1 = curent;
-      console.log(tall1);
-      return;
-    }
-    tall2 = curent;
-    console.log(tall2);
-  }*/
+  
   if (isEqual == false && isOperator == false) {
     if (operator == null) {
       if (isDecimal && tall1.indexOf(".") != -1) {
@@ -159,6 +149,9 @@ function output(value, isOperator, isEqual, isDecimal) {
     operator = null;
     equal = null;
     decimal = "";
+  }
+  else if (value == "j") {
+    document.getElementById("output").innerHTML = "JOAKIM";
   }
   else {
     document.getElementById("output").innerHTML = curent + value;
